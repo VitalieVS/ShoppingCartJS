@@ -1,5 +1,6 @@
 h2 {
     color: gray;
+    font-size: 30px;
 }
 
 .items_parent {
@@ -13,9 +14,25 @@ h2 {
 }
 
 li {
-    border: 1px solid purple;
+    border: 2px solid purple;
 }
 
 .itemBorder {
+    margin: auto;
     border: 1px solid black;
+    width: 70%;
+}
+
+.items_parent img {
+    text-align: center;
+    height: 250px;
+}
+
+h3 {
+    color: red;
+    font-size: 15px;
+}
+
+span {
+
 }
