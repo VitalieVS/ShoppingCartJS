@@ -1,4 +1,8 @@
-.items_parent{
+h2 {
+    color: gray;
+}
+
+.items_parent {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -8,6 +12,10 @@
     text-align: center;
 }
 
-li{
-    border: 2px solid purple;
+li {
+    border: 1px solid purple;
+}
+
+.itemBorder {
+    border: 1px solid black;
 }
