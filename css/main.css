@@ -29,16 +29,20 @@ h3 {
     font-size: 15px;
 }
 
-span {
-    width: 300px;
+input {
     text-align: center;
-    font-size: 25px;
-    background-color: purple;
-    color: whitesmoke;
-    border: 3px solid black;
-    border-radius: 30px;
 }
 
-span:hover{
+.item_but {
+    margin: 25px auto;
+    width: 150px;
+    text-align: center;
+    font-size: 25px;
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.item_but:hover {
     cursor: pointer;
 }
