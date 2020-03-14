@@ -1,3 +1,13 @@
 .items_parent{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    list-style: none;
+    text-align: center;
+}
 
+li{
+    border: 2px solid purple;
 }
