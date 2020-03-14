@@ -46,3 +46,16 @@ input {
 .item_but:hover {
     cursor: pointer;
 }
+
+.added{
+    margin: 25px auto;
+    width: 150px;
+    text-align: center;
+    font-size: 25px;
+    color: black;
+    display: none;
+}
+
+.added i {
+    color: green;
+}

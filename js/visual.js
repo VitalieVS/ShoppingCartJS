@@ -1,13 +1,18 @@
 document.addEventListener("DOMContentLoaded", () =>{
     const buttonsList = document.querySelectorAll('.item_but');
-    console.log(buttonsList);
+    const addedList = document.querySelectorAll('.added');
+    const startTimer = (el) =>{
+        setTimeout(()=>{
+            buttonsList[el].style.display = 'block';
+            addedList[el].style.display = 'none';
+        }, 2000);
+    };
+
     for (let i = 0; i < buttonsList.length; i++){
         buttonsList[i].addEventListener('click', () =>{
-            buttonsList[i].style.color = 'green';
-            buttonsList[i].innerHTML = 'Added <i class="fas fa-check fa-1x"></i>';
-            buttonsList[i].style.border = 'none';
+            buttonsList[i].style.display = 'none';
+            addedList[i].style.display = 'block';
+            startTimer(i);
         });
     }
-
-
 });
