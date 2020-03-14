@@ -1,15 +1,24 @@
-document.addEventListener("DOMContentLoaded", () =>{
+document.addEventListener("DOMContentLoaded", () => {
     const buttonsList = document.querySelectorAll('.item_but');
     const addedList = document.querySelectorAll('.added');
-    const startTimer = (el) =>{
-        setTimeout(()=>{
-            buttonsList[el].style.display = 'block';
-            addedList[el].style.display = 'none';
-        }, 2000);
+    const spanList = document.querySelectorAll('.added .latency_box');
+    const startTimer = (el) => {
+        let time = 3;
+        let interval = setInterval(() => {
+            if (time < 1) {
+                buttonsList[el].style.display = 'block';
+                addedList[el].style.display = 'none';
+                spanList[el].innerHTML = '';
+                clearInterval(interval);
+            } else {
+                spanList[el].innerHTML = time;
+                time--;
+            }
+        }, 1000)
     };
 
-    for (let i = 0; i < buttonsList.length; i++){
-        buttonsList[i].addEventListener('click', () =>{
+    for (let i = 0; i < buttonsList.length; i++) {
+        buttonsList[i].addEventListener('click', () => {
             buttonsList[i].style.display = 'none';
             addedList[i].style.display = 'block';
             startTimer(i);
