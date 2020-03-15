@@ -1,8 +1,3 @@
-const plusButList = document.querySelectorAll('.plus_but');
-const minusButList = document.querySelectorAll('.minus_but');
-const inputList = document.querySelectorAll('input');
-
-
 for (let i = 0; i < plusButList.length; i++) {
     plusButList[i].addEventListener('click', () => {
             inputList[i].value = (+inputList[i].value + 1).toString();
