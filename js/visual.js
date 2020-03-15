@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttonsList = document.querySelectorAll('.item_but');
     const addedList = document.querySelectorAll('.added');
     const spanList = document.querySelectorAll('.added .latency_box');
+    const itemName = document.querySelectorAll('h2');
+    const priceList = document.querySelectorAll('h3');
     const startTimer = (el) => {
         let time = 3;
         let interval = setInterval(() => {
@@ -10,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 buttonsList[el].style.display = 'block';
                 addedList[el].style.display = 'none';
                 spanList[el].innerHTML = '';
+                let price = priceList[el].innerHTML;
+                let rez = price.match(/\d/g).join('');
+                cart.addToCart([itemName[el].innerHTML, rez, inputList[el].value]);
                 clearInterval(interval);
             } else {
                 spanList[el].innerHTML = time;

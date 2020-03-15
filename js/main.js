@@ -1,10 +1,10 @@
 class Cart {
     constructor() {
-
+        this.cart = {};
     }
 
-    addToCart() {
-
+    addToCart(item) {
+        console.log(item);
     }
 
     removeFromCart() {
