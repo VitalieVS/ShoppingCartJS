@@ -1,5 +1,6 @@
 const cart = new Cart();
 document.addEventListener("DOMContentLoaded", () => {
+    window.localStorage.clear();
     const startTimer = (el) => {
         let time = 3;
         let interval = setInterval(() => {
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 cart.addToCart([itemName[el].innerHTML, rez, inputList[el].value]);
                 clearInterval(interval);
             } else {
-                spanList[el].innerHTML = time;
+                spanList[el].innerHTML = time.toString(10);
                 time--;
             }
         }, 1000)

@@ -2,6 +2,7 @@ class Cart {
     constructor() {
         this.cart = [];
         this.data = {};
+        this.price = [];
     }
 
     addToCart(item) {
@@ -17,7 +18,29 @@ class Cart {
         window.localStorage.setItem('item', JSON.stringify(cart));
     }
 
-    removeFromCart() {
-
+    getCartItems() {
+        let items = localStorage.getItem('item');
+        items = JSON.parse(items);
+        return items;
     }
+
+    createList(index) {
+        const ul = document.getElementById('items');
+        let itemNameLi = document.createElement('li');
+        let priceLi = document.createElement('li');
+        let quantityLi = document.createElement('li');
+        this.price.push(this.getCartItems()[index].price * this.getCartItems()[index].quantity);
+        itemNameLi.appendChild(document.createTextNode(this.getCartItems()[index].itemName));
+        priceLi.appendChild(document.createTextNode(this.price[index]));
+        quantityLi.appendChild(document.createTextNode(this.getCartItems()[index].quantity));
+        ul.appendChild(itemNameLi);
+        ul.appendChild(priceLi);
+        ul.appendChild(quantityLi);
+    }
+
+    totalPrice() {
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+        return this.price.reduce(reducer);
+    }
+
 }
