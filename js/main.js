@@ -5,6 +5,24 @@ class Cart {
         this.price = [];
     }
 
+    startTimer(i) {
+            let time = 3;
+            let interval = setInterval(() => {
+                if (time < 1) {
+                    buttonsList[i].style.display = 'block';
+                    addedList[i].style.display = 'none';
+                    spanList[i].innerHTML = '';
+                    let price = priceList[i].innerHTML;
+                    let rez = price.match(/\d/g).join('');
+                    this.addToCart([itemName[i].innerHTML, rez, inputList[i].value]);
+                    clearInterval(interval);
+                } else {
+                    spanList[i].innerHTML = time.toString(10);
+                    time--;
+                }
+            }, 1000)
+    }
+
     addToCart(item) {
         this.data = {};
         this.data.itemName = item[0];
@@ -42,6 +60,22 @@ class Cart {
     totalPrice() {
         const reducer = (accumulator, currentValue) => accumulator + currentValue;
         return this.price.reduce(reducer);
+    }
+
+
+    removeFromCart() {
+        function getEventTarget(e) {
+            e = e || window.event;
+            return e.target || e.srcElement;
+        }
+        let ul = document.getElementById('items');
+        ul.onclick = function(event) {
+            let target = getEventTarget(event);
+            let li = target.closest('li');
+            let nodes = Array.from( li.closest('ul').children );
+            let index = nodes.indexOf( li );
+            alert(index);
+        };
     }
 
 }

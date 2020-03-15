@@ -1,29 +1,11 @@
-const cart = new Cart();
 document.addEventListener("DOMContentLoaded", () => {
     window.localStorage.clear();
-    const startTimer = (el) => {
-        let time = 3;
-        let interval = setInterval(() => {
-            if (time < 1) {
-                buttonsList[el].style.display = 'block';
-                addedList[el].style.display = 'none';
-                spanList[el].innerHTML = '';
-                let price = priceList[el].innerHTML;
-                let rez = price.match(/\d/g).join('');
-                cart.addToCart([itemName[el].innerHTML, rez, inputList[el].value]);
-                clearInterval(interval);
-            } else {
-                spanList[el].innerHTML = time.toString(10);
-                time--;
-            }
-        }, 1000)
-    };
-
+    const cart = new Cart();
     for (let i = 0; i < buttonsList.length; i++) {
         buttonsList[i].addEventListener('click', () => {
             buttonsList[i].style.display = 'none';
             addedList[i].style.display = 'block';
-            startTimer(i);
+            cart.startTimer(i);
         });
     }
 });

@@ -4,7 +4,6 @@ for (let i = 0; i < plusButList.length; i++) {
         }
     )
 }
-
 for (let i = 0; i < minusButList.length; i++) {
     minusButList[i].addEventListener('click', () => {
             if (!(+inputList[i].value === 1)) {
