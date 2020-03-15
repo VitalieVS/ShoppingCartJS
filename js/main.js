@@ -33,6 +33,7 @@ class Cart {
         itemNameLi.appendChild(document.createTextNode(this.getCartItems()[index].itemName));
         priceLi.appendChild(document.createTextNode(this.price[index]));
         quantityLi.appendChild(document.createTextNode(this.getCartItems()[index].quantity));
+        quantityLi.innerHTML += ' <a class="remove"><i class="fas fa-times"></i></a>';
         ul.appendChild(itemNameLi);
         ul.appendChild(priceLi);
         ul.appendChild(quantityLi);
