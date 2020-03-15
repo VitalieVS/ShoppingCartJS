@@ -5,17 +5,16 @@ class Cart {
     }
 
     addToCart(item) {
+        this.data = {};
         this.data.itemName = item[0];
         this.data.price = item[1];
         this.data.quantity = item[2];
         this.cart.push(this.data);
-        this.addLocalStorage();
-        let x = localStorage.getItem('item');
-        console.log('retrievedObject: ', JSON.parse(x));
+        this.addLocalStorage(this.cart);
     }
 
-    addLocalStorage(){
-        window.localStorage.setItem('item', JSON.stringify(this.cart));
+    addLocalStorage(cart) {
+        window.localStorage.setItem('item', JSON.stringify(cart));
     }
 
     removeFromCart() {
