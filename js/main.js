@@ -6,21 +6,21 @@ class Cart {
     }
 
     startTimer(i) {
-            let time = 3;
-            let interval = setInterval(() => {
-                if (time < 1) {
-                    buttonsList[i].style.display = 'block';
-                    addedList[i].style.display = 'none';
-                    spanList[i].innerHTML = '';
-                    let price = priceList[i].innerHTML;
-                    let rez = price.match(/\d/g).join('');
-                    this.addToCart([itemName[i].innerHTML, rez, inputList[i].value]);
-                    clearInterval(interval);
-                } else {
-                    spanList[i].innerHTML = time.toString(10);
-                    time--;
-                }
-            }, 1000)
+        let time = 3;
+        let interval = setInterval(() => {
+            if (time < 1) {
+                buttonsList[i].style.display = 'block';
+                addedList[i].style.display = 'none';
+                spanList[i].innerHTML = '';
+                let price = priceList[i].innerHTML;
+                let rez = price.match(/\d/g).join('');
+                this.addToCart([itemName[i].innerHTML, rez, inputList[i].value, itemName[i].id]);
+                clearInterval(interval);
+            } else {
+                spanList[i].innerHTML = time.toString(10);
+                time--;
+            }
+        }, 1000)
     }
 
     addToCart(item) {
@@ -28,6 +28,7 @@ class Cart {
         this.data.itemName = item[0];
         this.data.price = item[1];
         this.data.quantity = item[2];
+        this.data.id = item[3];
         this.cart.push(this.data);
         this.addLocalStorage(this.cart);
     }
@@ -51,31 +52,47 @@ class Cart {
         itemNameLi.appendChild(document.createTextNode(this.getCartItems()[index].itemName));
         priceLi.appendChild(document.createTextNode(this.price[index]));
         quantityLi.appendChild(document.createTextNode(this.getCartItems()[index].quantity));
-        quantityLi.innerHTML += ' <a class="remove"><i class="fas fa-times"></i></a>';
+        quantityLi.innerHTML += ` <a class="remove" id="${index}"><i class="fas fa-times"></i></a>`;
         ul.appendChild(itemNameLi);
         ul.appendChild(priceLi);
         ul.appendChild(quantityLi);
     }
 
-    totalPrice() {
+    totalPrice(arr) {
         const reducer = (accumulator, currentValue) => accumulator + currentValue;
-        return this.price.reduce(reducer);
+       // return .reduce(reducer);
     }
 
 
+    setTotalPrice(price) {
+        console.log(price);
+    }
+
     removeFromCart() {
-        function getEventTarget(e) {
-            e = e || window.event;
-            return e.target || e.srcElement;
+        const removePoint = document.querySelectorAll('.remove');
+       console.log(removePoint.length);
+        let arr = this.getCartItems();
+        for (let i = 0; i < removePoint.length; i++) {
+            removePoint[i].addEventListener('click', () => {
+                const ul = document.getElementById('items');
+                let toRemoveID = removePoint[i].id;
+                delete arr[toRemoveID];
+                toRemoveID++;
+                if (Number(toRemoveID) === removePoint.length) {
+                    delete arr[toRemoveID];
+                    ul.removeChild(ul.childNodes[1]);
+                    ul.removeChild(ul.childNodes[1]);
+                    ul.removeChild(ul.childNodes[1]);
+                } else{
+                    ul.removeChild(ul.childNodes[toRemoveID]);
+                    ul.removeChild(ul.childNodes[toRemoveID]);
+                    ul.removeChild(ul.childNodes[toRemoveID]);
+                }
+            });
         }
-        let ul = document.getElementById('items');
-        ul.onclick = function(event) {
-            let target = getEventTarget(event);
-            let li = target.closest('li');
-            let nodes = Array.from( li.closest('ul').children );
-            let index = nodes.indexOf( li );
-            alert(index);
-        };
     }
 
 }
+
+//<script src="js/main.js"></script>
+//<script src="js/cart.js"></script>
