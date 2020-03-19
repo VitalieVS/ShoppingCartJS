@@ -6,3 +6,4 @@ const addedList = document.querySelectorAll('.added');
 const spanList = document.querySelectorAll('.added .latency_box');
 const itemName = document.querySelectorAll('h2');
 const priceList = document.querySelectorAll('h3');
+const priceHolder = document.getElementById('priceHolder');

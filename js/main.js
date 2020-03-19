@@ -3,15 +3,14 @@ class Cart {
         this.cart = [];
         this.data = {};
         this.price = [];
+        this.total = 0;
     }
 
     startTimer(i) {
         let time = 3;
         let interval = setInterval(() => {
             if (time < 1) {
-                buttonsList[i].style.display = 'block';
-                addedList[i].style.display = 'none';
-                spanList[i].innerHTML = '';
+                this.modifyDOM(i);
                 let price = priceList[i].innerHTML;
                 let rez = price.match(/\d/g).join('');
                 this.addToCart([itemName[i].innerHTML, rez, inputList[i].value, itemName[i].id]);
@@ -21,6 +20,12 @@ class Cart {
                 time--;
             }
         }, 1000)
+    }
+
+    modifyDOM(i) {
+        buttonsList[i].style.display = 'block';
+        addedList[i].style.display = 'none';
+        spanList[i].innerHTML = '';
     }
 
     addToCart(item) {
@@ -59,31 +64,40 @@ class Cart {
     }
 
     totalPrice(arr) {
-        const reducer = (accumulator, currentValue) => accumulator + currentValue;
-       // return .reduce(reducer);
+        let sum = () => {
+            let arrTotal = 0;
+            for (let i = 0; i < arr.length; i++) {
+                arrTotal += Number(arr[i]);
+            }
+            return arrTotal;
+        };
+        priceHolder.innerHTML = sum().toString();
+        this.total = sum();
     }
 
-
-    setTotalPrice(price) {
-        console.log(price);
+    updateTotal(price) {
+        this.total -= price;
+        priceHolder.innerHTML = this.total.toString();
     }
 
     removeFromCart() {
         const removePoint = document.querySelectorAll('.remove');
-       console.log(removePoint.length);
         let arr = this.getCartItems();
         for (let i = 0; i < removePoint.length; i++) {
             removePoint[i].addEventListener('click', () => {
                 const ul = document.getElementById('items');
                 let toRemoveID = removePoint[i].id;
+                this.updateTotal(arr[toRemoveID].price);
                 delete arr[toRemoveID];
                 toRemoveID++;
                 if (Number(toRemoveID) === removePoint.length) {
+                    //this.updateTotal(arr[toRemoveID].price);
                     delete arr[toRemoveID];
                     ul.removeChild(ul.childNodes[1]);
                     ul.removeChild(ul.childNodes[1]);
                     ul.removeChild(ul.childNodes[1]);
-                } else{
+                } else {
+                   // this.updateTotal(arr[toRemoveID].price);
                     ul.removeChild(ul.childNodes[toRemoveID]);
                     ul.removeChild(ul.childNodes[toRemoveID]);
                     ul.removeChild(ul.childNodes[toRemoveID]);
@@ -93,6 +107,3 @@ class Cart {
     }
 
 }
-
-//<script src="js/main.js"></script>
-//<script src="js/cart.js"></script>

@@ -16,7 +16,7 @@ h1 {
     color: red;
 }
 
-a:hover{
+a:hover {
     cursor: pointer;
 }
 
@@ -40,11 +40,11 @@ ul#item-section-desc {
     border-bottom: 1px solid rgba(6, 128, 199, 0.61);
 }
 
-ul#items li.item{
+ul#items li.item {
     padding-top: 5px;
 }
 
-#items{
+#items {
     margin-left: 14%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -53,9 +53,10 @@ ul#items li.item{
 
 #total-price {
     text-align: center;
+    margin-top: 20px;
 }
 
-#priceHold{
+#priceHolder {
     background-color: transparent;
     color: red;
 }
