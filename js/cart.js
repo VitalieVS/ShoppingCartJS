@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     cart.totalPrice(priceArr);
     for (let i = 0; i < items.length; i++) {
-       cart.createList(i);
+        cart.createList(i);
     }
     cart.removeFromCart();
 });
